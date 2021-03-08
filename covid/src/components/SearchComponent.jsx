@@ -27,7 +27,7 @@ export default class SearchComponent extends Component {
         })
     }
     else{
-      console.log("empty");
+      console.log("empty search");
       dataSearched = this.state.stateList;
     }
 

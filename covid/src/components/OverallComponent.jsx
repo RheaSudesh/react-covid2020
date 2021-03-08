@@ -16,6 +16,7 @@ export default class OverallComponent extends Component {
                 <td>Recovered cases</td>
                 <td>Death cases</td>
                 <td>Confirmed Cases</td>
+                <td>Recovery Ratio</td>
                 </tr>
               </thead>
               <tbody>
@@ -26,6 +27,7 @@ export default class OverallComponent extends Component {
                     <td>{item.recovered}</td>
                     <td>{item.deaths}</td>
                     <td>{item.confirmed}</td>
+                    <td>{Math.round(item.recovered/item.active)}</td>
                   </tr>
                 ))
                 }

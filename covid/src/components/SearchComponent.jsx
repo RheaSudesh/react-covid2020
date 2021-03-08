@@ -1,11 +1,54 @@
 import React, { Component } from 'react'
+import OverallComponent from './OverallComponent';
 
 export default class SearchComponent extends Component {
-  render() {
-    return (
-      <div>
-        
-      </div>
-    )
+  
+  constructor(props){
+    super(props);
+    this.state = {
+      stateList:this.props.listOfStates,
+      searchedState:''
+    };
+
+  }
+
+  updateSearchedStateHandler = event =>{
+      this.setState({ searchedState: event.target.value });
+  }
+
+  searchState=(stateList)=>{
+    
+    let dataSearched=this.state.stateList;
+
+    if(!(this.state.searchedState === "")){
+        dataSearched = dataSearched.filter(item =>{
+            if(item.state.toLowerCase().includes(this.state.searchedState.toLowerCase()))
+                return item;
+        })
+    }
+    else{
+      console.log("empty");
+      dataSearched = this.state.stateList;
+    }
+
+    return (<OverallComponent stateListSearched={dataSearched}></OverallComponent>);
+  }
+
+
+  render(){
+    
+      return (
+        <div>
+          <div>
+            <label>Search</label>
+            <input className="search" type="text" value={this.state.searchedState} onChange={this.updateSearchedStateHandler}></input>       
+          </div>
+          <div className="search-output">  
+            {this.searchState(this.state.stateList)}
+          </div>
+        </div>
+      );
   }
 }
+
+
